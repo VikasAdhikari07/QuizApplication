@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    <title>Qiuz List</title>
+{% endblock title %}
+
+{% block content %}
+
+    <!-- Header -->
+    <header>
+        <h1>Available Quizzes</h1>
+        <p>Select a quiz to test your knowledge and have fun!</p>
+    </header>
+
+    
+    <!-- Quiz Cards -->
+    <div class="quiz-list">
+        {% for quiz in quiz_list %}
+        <div class="quiz-card">
+            <h3>{{ quiz.quiz_name }}</h3>
+            <p>{{ quiz.description|truncatechars:100 }}</p>
+            <a href="{% url 'play_quiz' quiz.id %}" class="btn-home">Take Quiz</a>
+            <a href="{% url 'leaderboard' quiz.id %}" class="btn-home">See Leaderboard</a>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
+

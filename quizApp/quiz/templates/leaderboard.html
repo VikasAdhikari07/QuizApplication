@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+<title>Leaderboard</title>
+{% endblock title %}
+
+{% block content %}
+    <!-- Results Section -->
+    <div class="container">
+        <h1 class="score">Leaderboard For {{quiz.quiz_name}} </h1>
+        <!-- Table for Question Breakdown -->
+        <table class="result-table">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in quiz_user %}
+                <tr>
+                    <td>{{ user.player.username }}</td>
+                    <td>{{ user.score }}</td>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Back to Home Button -->
+        {% comment %} <a href="{% url 'home' %}" class="btn-home">Go to Home</a> {% endcomment %}
+    </div>
+{% endblock content %}

@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    <title>Quiz Master - Test Your Knowledge</title>
+    {% endblock title %}
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#" class="logo">Quiz Master</a>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="{% url 'quizlist' %}">Quizzes</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="#">{{user.username}}</a></li>
+            <li><a href="{% url "logout" %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url "login" %}">Login</a></li>
+            <li><a href="{% url "register" %}">Register Yourself</a></li>
+              {% endif %}
+        </ul>
+    </nav>
+    
+    {% block content %}
+    <!-- Header -->
+    <header>
+        <h1>Welcome to Quiz Master</h1>
+        <p>Challenge yourself with fun, engaging quizzes on a variety of topics!</p>
+        <div class="cta-buttons">
+            <a href="{% url 'quizlist' %}">Start a Quiz</a>
+            <a href="#features">Learn More</a>
+        </div>
+    </header>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li class="message-box{% if message.tags %} {{ message.tags }}{% endif %}">
+            <span>{{ message }}</span>
+            <button class="close-btn" onclick="this.parentElement.style.display='none'">x</button>
+        </li>
+        {% endfor %}
+    
+    </ul>
+{% endif %}
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="features">
+            <div class="feature-card">
+                <h3>Engaging Questions</h3>
+                <p>Answer fun and challenging questions designed to test your knowledge and skills.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Multiple Topics</h3>
+                <p>Choose from a variety of topics like Science, Economics, Mathematics and more.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Leaderboard</h3>
+                <p>Track your progress and compete with friends using our interactive leaderboard feature!</p>
+            </div>
+        </div>
+    </section>
+    {% endblock content %}
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Quiz Master. Built with ❤️ by <a href="#">Vikas</a>.</p>
+    </footer>
+</body>
+</html>
