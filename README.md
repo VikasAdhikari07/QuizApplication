@@ -2,6 +2,8 @@
 
 Welcome to the Quiz Master, a Django-based web application that lets users take quizzes and view their scores. This project includes features such as question sets, a leaderboard, and user authentication.
 
+Link for live application -> https://vikasadhikari30.pythonanywhere.com/
+
 ## Table of Contents
 
 - [Features](#features)
